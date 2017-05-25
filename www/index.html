@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="icon-fonts/elusive-icons-2.0.0/css/elusive-icons.css">
+        <link rel="stylesheet" type="text/css" href="icon-fonts/font-awesome-4.3.0/css/font-awesome.css">
+
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <title>Blank App Designer Cordova Web App Project Template</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                
+     
+    
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+        <link rel="stylesheet" href="css/estilo.css">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE1dRQlnpuBeO5BvcmzLzDLZrLh5nxODs&amp;callback=initMap" async="" defer=""></script>
+
+        <script src="js/app.js"></script>
+
+        <script src="js/mapa.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+        <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+
+        <script type="application/javascript" src="xdk/appdesigner/js/rest-of-space.js"></script>
+
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- TELA DE CALCULO PARA SABER A QUANTIDADES DE PASSAGENS DE ACORDO COM O SALDO-->
+        <div class="upage hidden" id="mainpage">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_1" data-uib="layout/header" data-ver="0">
+                    <h2>Quantidade de Passagens</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_103 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnCalcMenu"><i class="fa fa-arrow-left" data-position="icon only"></i>
+                        </button>
+
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_23_85">
+                    <div class="widget-container content-area vertical-col">
+                        <div class="list-group widget uib_w_34 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1"><a class="list-group-item allow-badge widget uib_w_37" data-uib="twitter%20bootstrap/list_item" data-ver="1"><span class="badge glyphicon glyphicon-usd"> </span>
+   
+                               
+                                    <p class="list-group-item-text">Valor do saldo</p></a>
+                        </div>
+                        <div class="table-thing widget uib_w_43 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                            <label class="narrow-control" for="saldoDisplay"></label>
+                            <input class="wide-control form-control default input-lg" type="text" id="saldoDisplay" readonly="true">
+                        </div>
+
+                        <div class="well no_wrap  widget uib_w_4 d-margins" data-uib="twitter%20bootstrap/well" data-ver="1">
+                            <div class="col uib_col_6 single-col" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="btn-group uib-bs-flex widget uib_w_5 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_6 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnUm">1</button>
+                                        <button class="btn widget uib_w_10 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDois">2</button>
+                                        <button class="btn widget uib_w_9 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTres">3</button>
+                                        <button class="btn widget uib_w_7 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnQuatro">4</button>
+                                        <button class="btn widget uib_w_8 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnCinco">5</button>
+
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_11 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+
+                                        <button class="btn widget uib_w_12 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSeis">6</button>
+                                        <button class="btn widget uib_w_13 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSete">7</button>
+                                        <button class="btn widget uib_w_14 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnOito">8</button>
+                                        <button class="btn widget uib_w_15 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnNove">9</button>
+                                        <button class="btn widget uib_w_16 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnZero">0</button>
+
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_45 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_46 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                        <button class="btn widget uib_w_21 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnPonto">.</button>
+                                        <button class="btn widget uib_w_38 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDeletar"><i class="fa fa-long-arrow-left" data-position="icon only"></i>
+                                        </button>
+                                        <button class="btn widget uib_w_44 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLimparTela"><i class="glyphicon glyphicon-remove" data-position="icon only"></i>
+                                        </button>
+                                        <button class="btn widget uib_w_48 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_19 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+
+                                        <button class="btn widget uib_w_22 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                    </div>
+                                    <div class="list-group widget uib_w_27 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1"><a class="list-group-item allow-badge widget uib_w_28" data-uib="twitter%20bootstrap/list_item" data-ver="1"><span class="badge fa fa-bus"> </span>
+   
+   
+                                                <p class="list-group-item-text"> Escolha o valor da tarifa:</p></a>
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_29 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_30 btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaUm">2.20 R$</button>
+
+                                        <button class="btn widget uib_w_120 d-margins btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaDois">2.50 R$</button>
+                                        <button class="btn widget uib_w_31 btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaTres">2.90 R$</button>
+                                        <button class="btn widget uib_w_33 d-margins btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaQuatro">3.10 R$</button>
+                                    </div>
+                                    <div class="list-group widget uib_w_39 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1">
+                                        <a class="list-group-item allow-badge widget uib_w_42" data-uib="twitter%20bootstrap/list_item" data-ver="1">
+
+                                            <p class="list-group-item-text">Quantidade de Passagens</p>
+                                        </a>
+                                    </div>
+                                    <div class="card_grid widget uib_w_49 wrapping-col d-margins flex-basis-49" data-uib="layout/card_grid" data-ver="0">
+                                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_50 section-dimension-50" data-uib="layout/card" data-ver="0">
+                                            <div class="table-thing widget uib_w_54 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtInteira">Passe Inteira</label>
+                                                <input class="wide-control form-control default" type="number" id="txtInteira" readonly="true">
+                                            </div>
+                                            <div class="table-thing widget uib_w_55 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtMeia">Passe Meia</label>
+                                                <input class="wide-control form-control default" type="number" id="txtMeia" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_51 section-dimension-51" data-uib="layout/card" data-ver="0">
+                                            <div class="table-thing widget uib_w_56 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtSaldoInteira">Saldo restante</label>
+                                                <input class="wide-control form-control default" type="number" placeholder="R$" id="txtSaldoInteira" readonly="true">
+                                            </div>
+                                            <div class="table-thing widget uib_w_57 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtSaldoMeia">Saldo restante</label>
+                                                <input class="wide-control form-control default" type="number" placeholder="R$" id="txtSaldoMeia" readonly="true">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><span class="uib_shim"></span>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="widget-container">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TELA INICIAL MOSTRA O SALDO ATUAL DO USUARIO-->
+
+        <div class="upage" id="home">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_59" data-uib="layout/header" data-ver="0">
+                    <h2>Meu Saldo</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_79 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnMenu"><i class="glyphicon glyphicon-tasks" data-position="icon only"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_96_89">
+
+                    <div class="card_grid widget uib_w_60 wrapping-col d-margins" data-uib="layout/card_grid" data-ver="0">
+                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_61" data-uib="layout/card" data-ver="0">
+
+                            <div class="table-thing widget uib_w_65 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                <label class="narrow-control label-top-left" for="txtHistorico">Saldo Atual</label>
+                                <input class="wide-control form-control default input-lg" type="number" id="txtHistorico" readonly="true">
+                            </div>
+                        </div>
+                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_63" data-uib="layout/card" data-ver="0">
+                            <button class="btn widget uib_w_66 d-margins btn-sm btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDelHistorico">Limpar</button>
+                            <button class="btn widget uib_w_122 d-margins btn-sm btn-success" data-uib="twitter%20bootstrap/button" data-ver="1" id="salvaSaldo">Salvar</button>
+                        </div>
+
+                    </div>
+
+                    <div class="panel widget uib_w_67 panel-default d-margins" data-uib="twitter%20bootstrap/panel" data-ver="1">
+                        <div class="panel-heading">
+                            <div class="widget-container">
+                                <div class="card_grid widget uib_w_68 wrapping-col d-margins flex-basis-68" data-uib="layout/card_grid" data-ver="0">
+
+                                    <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_70" data-uib="layout/card" data-ver="0">
+                                        <div class="table-thing widget uib_w_73 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                            <label class="narrow-control label-top-left" for="txtAdcionarValor">Adicione ou retire valor do saldo atual</label>
+                                            <input class="wide-control form-control default" type="number" id="txtAdcionarValor">
+                                        </div>
+                                        <div class="btn-group uib-bs-flex widget uib_w_74 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                            <button class="btn widget uib_w_75 btn-success" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnAdcHistorico"><i class="glyphicon glyphicon-plus" data-position="icon only"></i>
+                                            </button>
+                                            <button class="btn widget uib_w_76 btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnRemHistorico"><i class="glyphicon glyphicon-minus" data-position="icon only"></i>
+                                            </button>
+
+                                            <button class="btn widget uib_w_78 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLimparCampo"><i class="glyphicon glyphicon-remove" data-position="icon only"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col uib_col_14 single-col" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="widget-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENU DO SIDEBAR - BARRA LATERAL COM OS BOTÕES COM ACESSO AS TELAS/PAGINAS -->
+
+                <div class="inner-element uib_w_80 uib_sidebar leftbar bar-bg thumb-bg bar-gutter swipe" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'overlap', 'v':280, 'side':'left', 'dur':100}" id="sideBar">
+
+                    <div class="sidebar-content content-area vertical-col">
+                        <div class="panel widget uib_w_86 panel-default d-margins" data-uib="twitter%20bootstrap/panel" data-ver="1">
+                            <div class="panel-heading">
+                                <div class="widget-container">
+                                    <div class="card_grid widget uib_w_87 wrapping-col d-margins flex-basis-87" data-uib="layout/card_grid" data-ver="0">
+
+                                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_89 section-dimension-89" data-uib="layout/card" data-ver="0">
+
+                                            <div class="btn-group uib-bs-flex widget uib_w_97 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+
+                                                <button class="btn widget uib_w_98 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                                <button class="btn widget uib_w_99 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+
+                                                <button class="btn widget uib_w_117 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarSideBar"><i class="fa fa-arrow-left button-icon-right" data-position="right"></i>
+                                                </button>
+                                            </div>
+
+                                            <button class="btn widget uib_w_102 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnMeusaldo"><i class="glyphicon glyphicon-usd button-icon-left" data-position="left"></i>Meu Saldo</button>
+                                            <button class="btn widget uib_w_92 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnPontos"><i class="el el-map-marker button-icon-left" data-position="left"></i>Onde Estou?</button>
+                                            <button class="btn widget uib_w_94 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnQtdPassagens"><i class="fa fa-bus button-icon-left" data-position="left"></i>Quantidade de passagens</button>
+                                            <button class="btn widget uib_w_95 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnValorPassagem"><i class="glyphicon glyphicon-usd button-icon-left" data-position="left"></i>Valor de passagens</button>
+                                            <button class="btn widget uib_w_110 d-margins cpad-0 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnPontosRecarga"><i class="glyphicon glyphicon-screenshot button-icon-left" data-position="left"></i>Pontos de Recargas</button>
+                                            <button class="btn widget uib_w_111 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnInfor"><i class="glyphicon glyphicon-exclamation-sign button-icon-left" data-position="left"></i>Noticias</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col uib_col_15 single-col" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="widget uib_w_96 scale-image d-margins" data-uib="media/img" data-ver="0">
+                                        <figure class="figure-align">
+                                            <img src="images/72x72.png">
+                                            <figcaption data-position="bottom"></figcaption>
+                                        </figure>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="widget-container"></div>
+                            </div>
+                        </div>
+
+                        <div class="card_grid widget uib_w_81 wrapping-col d-margins flex-basis-81" data-uib="layout/card_grid" data-ver="0"></div>
+                    </div>
+                </div>
+
+                <div class="uib-footer uib-footer-fixed footer-bg container-group inner-element uib_w_118" data-uib="layout/footer" data-ver="0">
+                    <h2></h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA ONDE VAI CALCULAR O VALOR DAS PASSAGENS DE ACORDO COM A QUANTIDADE EM DINHEIRO QUE O USUARIO INSERIR -->
+
+        <div class="upage hidden" id="calculoPassagem">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_107" data-uib="layout/header" data-ver="0">
+                    <h2>Valor de Passagens</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_108 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarCalcPassagem"><i class="fa fa-arrow-left button-icon-left" data-position="left"></i> 
+                        </button>
+
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right">
+
+                    </div>
+
+                </div>
+
+                <div class="col uib_col_1 single-col" data-uib="layout/col" data-ver="0">
+                    <div class="widget-container content-area vertical-col">
+                        <div class="list-group widget uib_w_34 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1"><a class="list-group-item allow-badge widget uib_w_37" data-uib="twitter%20bootstrap/list_item" data-ver="1"><span class="badge glyphicon glyphicon-sort-by-order-alt"> </span>
+   
+                               
+                                    <p class="list-group-item-text">Quantidade de Passagens</p></a>
+                        </div>
+                        <div class="table-thing widget uib_w_43 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                            <label class="narrow-control" for="saldoDisplayseg"></label>
+                            <input class="wide-control form-control default input-lg" type="text" id="saldoDisplayseg" readonly="true">
+                        </div>
+
+                        <div class="well no_wrap  widget uib_w_4 d-margins" data-uib="twitter%20bootstrap/well" data-ver="1">
+                            <div class="col uib_col_6 single-col" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="btn-group uib-bs-flex widget uib_w_5 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_6 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnUmseg">1</button>
+                                        <button class="btn widget uib_w_10 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDoisseg">2</button>
+                                        <button class="btn widget uib_w_9 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTresseg">3</button>
+                                        <button class="btn widget uib_w_7 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnQuatroseg">4</button>
+                                        <button class="btn widget uib_w_8 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnCincoseg">5</button>
+
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_11 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+
+                                        <button class="btn widget uib_w_12 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSeisseg">6</button>
+                                        <button class="btn widget uib_w_13 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSeteseg">7</button>
+                                        <button class="btn widget uib_w_14 btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnOitoseg">8</button>
+                                        <button class="btn widget uib_w_15 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnNoveseg">9</button>
+                                        <button class="btn widget uib_w_16 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnZeroseg">0</button>
+
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_45 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_46 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+
+                                        <button class="btn widget uib_w_38 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDeletarseg"><i class="fa fa-long-arrow-left" data-position="icon only"></i>
+                                        </button>
+                                        <button class="btn widget uib_w_44 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLimparTelaseg"><i class="glyphicon glyphicon-remove" data-position="icon only"></i>
+                                        </button>
+                                        <button class="btn widget uib_w_48 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_19 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+
+                                        <button class="btn widget uib_w_22 btn-xs btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"></button>
+                                    </div>
+                                    <div class="list-group widget uib_w_27 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1"><a class="list-group-item allow-badge widget uib_w_28" data-uib="twitter%20bootstrap/list_item" data-ver="1"><span class="badge fa fa-bus"> </span>
+   
+   
+                                                <p class="list-group-item-text"> Escolha o valor da tarifa:</p></a>
+                                    </div>
+                                    <div class="btn-group uib-bs-flex widget uib_w_29 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+                                        <button class="btn widget uib_w_30 btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaUmSeg">2.20 R$</button>
+
+                                        <button class="btn widget uib_w_121 d-margins btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaDoisSeg">2.50 R$</button>
+                                        <button class="btn widget uib_w_31 btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaTresSeg">2.90 R$</button>
+                                        <button class="btn widget uib_w_33 d-margins btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTarifaQuatroSeg">3.10 R$</button>
+                                    </div>
+                                    <div class="list-group widget uib_w_39 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="1">
+                                        <a class="list-group-item allow-badge widget uib_w_42" data-uib="twitter%20bootstrap/list_item" data-ver="1">
+
+                                            <p class="list-group-item-text">Valor em reais:</p>
+                                        </a>
+                                    </div>
+                                    <div class="card_grid widget uib_w_49 wrapping-col d-margins flex-basis-49" data-uib="layout/card_grid" data-ver="0">
+                                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_50 section-dimension-50" data-uib="layout/card" data-ver="0">
+
+                                            <div class="table-thing widget uib_w_54 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtInteiraseg">Passe Inteira</label>
+                                                <input class="wide-control form-control default" type="number" id="txtInteiraseg" readonly="true" placeholder="R$">
+                                            </div>
+                                        </div>
+                                        <div class="widget widget-container content-area vertical-col uib-card cpad-0 uib_w_51 section-dimension-51" data-uib="layout/card" data-ver="0">
+
+                                            <div class="table-thing widget uib_w_55 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                                <label class="narrow-control label-top-left" for="txtMeiaseg">Passe Meia</label>
+                                                <input class="wide-control form-control default" type="number" id="txtMeiaseg" readonly="true" placeholder="R$">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_55_98"></div>
+
+            </div>
+        </div>
+
+        <div class="upage hidden" id="pontosGPS">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_105" data-uib="layout/header" data-ver="0">
+
+                    <!-- TELA PARA LISTAR NO MAPA OS PONTOS DE RECARGAS MAS PROXIMOS. -->
+                    <h2>Pontos de Recarga</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_106 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarPontos"> <i class="fa fa-arrow-left"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_56_78">
+                    <div id="map" style="height: 500px; width: 700px">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="upage hidden" id="informacoes">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_112" data-uib="layout/header" data-ver="0">
+                    <h2>Noticias</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_113 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnInforVoltar"><i class="fa fa-arrow-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_26_66">
+                    <div class="widget uib_w_116 d-margins" data-uib="media/iframe" data-ver="0">
+                        <iframe src="http://passevirtualapp.blogspot.com.br/" style="border: 0; position:fixed; top:0; left:0; right:100px; bottom:0; width:100%; height:100%">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="upage hidden" id="rotas">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_114" data-uib="layout/header" data-ver="0">
+                    <h2>Pontos de Recarga</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_115 d-margins btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnRotasVoltar"><i class="fa fa-arrow-left"></i>
+                        </button>
+                           
+
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_3_79"></div>
+                
+                <iframe src="https://www.google.com/maps/d/embed?mid=1ChBbP4qnpZ0m_wsxZpe0nELsQfI&ll=-2.5528275908355322%2C-44.27375183016659&z=13"style="border: 0; position:fixed; top:0; left:0; right:100px; bottom:0; width:100%; height:100%"></iframe>
+                
+            </div>
+        </div>
+
+    </body>
+
+</html>
